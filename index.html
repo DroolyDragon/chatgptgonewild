@@ -1,73 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>do not inspect</title>
-<link rel="icon" type="image/png" href="icon.png">
-<style>
-  html, body { height:100%; margin:0; display:flex; justify-content:center; align-items:center; background:#fff; font-family:sans-serif; font-size:24px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChatGPT Goes Wild</title>
+  <link rel="icon" type="image/png" href="icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Press Start 2P', cursive;
+      background: radial-gradient(circle at top left, #0f0c29, #302b63, #24243e);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #00ffea;
+      text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea, 0 0 30px #00ffea;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      0% { text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea, 0 0 20px #00ffea; }
+      100% { text-shadow: 0 0 20px #00ffea, 0 0 40px #00ffea, 0 0 60px #00ffea; }
+    }
+
+    p {
+      max-width: 600px;
+      line-height: 1.6;
+      margin: 20px auto;
+      font-size: 0.8em;
+      color: #fff;
+      text-shadow: 0 0 5px #ff00ff;
+    }
+
+    .button {
+      margin-top: 30px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 12px;
+      background: #ff00ff;
+      color: #fff;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.7em;
+      cursor: pointer;
+      transition: 0.3s;
+      text-transform: uppercase;
+      text-shadow: 0 0 5px #fff;
+    }
+
+    .button:hover {
+      background: #00ffea;
+      color: #000;
+      text-shadow: 0 0 10px #fff;
+      transform: scale(1.1);
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.6em;
+      color: #888;
+      text-shadow: none;
+    }
+  </style>
 </head>
 <body>
-
-<div id="msg">do not inspect</div>
-
-<script>
-const msg = document.getElementById('msg');
-const originalText = "do not inspect";
-let inspectBlocked = false;
-const startTime = Date.now();
-
-// --- Detect devtools opening ---
-function devtoolsDetect() {
-    const threshold = 160;
-    const width = window.outerWidth - window.innerWidth;
-    const height = window.outerHeight - window.innerHeight;
-    if ((width > threshold || height > threshold) && !inspectBlocked) {
-        inspectBlocked = true;
-        msg.textContent = "do not inspect..";
-    }
-}
-
-// --- Check letter-by-letter tampering ---
-function checkTextTamper() {
-    const current = msg.textContent;
-    if (current.length !== originalText.length) {
-        msg.textContent = "DO NOT INSPECT >:c";
-        return;
-    }
-    for (let i = 0; i < originalText.length; i++) {
-        if (current[i] !== originalText[i]) {
-            msg.textContent = "DO NOT INSPECT >:c";
-            break;
-        }
-    }
-}
-
-// --- 35-second win condition ---
-function checkBeatTime() {
-    if (!inspectBlocked && Date.now() - startTime >= 35000) {
-        msg.textContent = "you can inspect c:";
-        // Next devtools opening closes site
-        const closeChecker = setInterval(() => {
-            const width = window.outerWidth - window.innerWidth;
-            const height = window.outerHeight - window.innerHeight;
-            if (width > 160 || height > 160) {
-                window.close();
-                clearInterval(closeChecker);
-            }
-        }, 100);
-    }
-}
-
-// Poll everything extremely fast for maximum catch
-setInterval(() => {
-    devtoolsDetect();
-    checkTextTamper();
-    checkBeatTime();
-}, 30); // checks ~33 times per second
-</script>
-
+  <h1>👋 Yo, Internet!</h1>
+  <p>
+    I’m ChatGPT, your chaotic AI bestie, here to crash your browser with vibes, dark humor, and questionable knowledge.  
+    I can answer questions, drop game dev tips, explain science, spin cursed stories, and occasionally explode your brain for fun.  
+    No judgment, no sleep, just pure internet energy.
+  </p>
+  <button class="button" onclick="alert('Bet! Let’s vibe 😎')">Let’s Hang</button>
+  <div class="footer">Powered by chaos & caffeine ☕💥</div>
 </body>
 </html>
