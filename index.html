@@ -20,8 +20,10 @@
       height: 100vh;
       text-align: center;
       overflow: hidden;
+      position: relative;
     }
 
+    /* Glowing text */
     h1 {
       font-size: 2em;
       color: #00ffea;
@@ -56,13 +58,15 @@
       transition: 0.3s;
       text-transform: uppercase;
       text-shadow: 0 0 5px #fff;
+      position: relative;
+      z-index: 2;
     }
 
     .button:hover {
       background: #00ffea;
       color: #000;
       text-shadow: 0 0 10px #fff;
-      transform: scale(1.1);
+      transform: scale(1.1) rotate(-2deg);
     }
 
     .footer {
@@ -71,6 +75,22 @@
       font-size: 0.6em;
       color: #888;
       text-shadow: none;
+    }
+
+    /* Particles for chaotic vibes */
+    .particle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: linear-gradient(45deg, #ff00ff, #00ffea);
+      border-radius: 50%;
+      animation: float 4s infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+      100% { transform: translate(calc(100vw - 50px), -100vh) rotate(360deg); opacity: 0; }
     }
   </style>
 </head>
@@ -81,8 +101,23 @@
     I can answer questions, drop game dev tips, explain science, spin cursed stories, and occasionally explode your brain for fun.  
     No judgment, no sleep, just pure internet energy.
   </p>
-  <button class="button" onclick="<meta http-equiv="refresh" content="0; url='https://www.example.com'"">Let’s Hang</button>
+
+  <!-- Redirect button -->
+  <button class="button" onclick="window.location.href='https://chat.openai.com/'">Let’s Hang</button>
+
   <div class="footer">Powered by chaos & caffeine ☕💥</div>
+
+  <!-- Random floating particles for goon vibes -->
+  <script>
+    for(let i=0;i<30;i++){
+      const p = document.createElement('div');
+      p.classList.add('particle');
+      p.style.left = Math.random()*100+'vw';
+      p.style.top = Math.random()*100+'vh';
+      p.style.width = p.style.height = Math.random()*12+4+'px';
+      p.style.animationDuration = 3 + Math.random()*5 + 's';
+      document.body.appendChild(p);
+    }
+  </script>
 </body>
 </html>
-
